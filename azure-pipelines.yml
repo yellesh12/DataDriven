@@ -4,8 +4,11 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
-
+  branches:
+    include:
+    - main
+pr:
+  - main
 pool:
   vmImage: ubuntu-latest
 
@@ -16,7 +19,7 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  displayName: 'Get the commit message'
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -24,3 +27,4 @@ steps:
       # Write your commands here
       
       echo '$(Build.SourceVersionMessage)'
+  displayName: 'Get the commit message'
